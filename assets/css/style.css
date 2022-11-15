@@ -4,3 +4,40 @@
 header #logo{
     font-weight: 500;
 }
+/* BEGIN LOGIN & SIGNUP STYLE */
+#secondSectionLogin{
+    background-color: #393E46;
+}
+#loginInput1, #loginInput2, #loginInput3, #loginInput4{
+    color: white;
+    background-color: #393E46 !important;
+}
+#loginInput1::placeholder, #loginInput2::placeholder, #loginInput3::placeholder, #loginInput4::placeholder{
+    color: #adadad;
+}
+.parsley-errors-list{
+    color: #f35f5f;
+    list-style: none;
+    font-weight: 300;
+    padding-left: 15px;
+    font-size: 13px;
+}
+#loginInput2 + .parsley-errors-list{
+    position: absolute;
+    top: 40px;
+}
+#iconPassword{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+    #firstSectionLogin{
+        position: absolute;
+        z-index: -1;
+        width: calc(100% - 16px);
+    }
+    #secondSectionLogin{
+        background-color: #393E46EE;
+    }
+}
+/* END LOGIN & SIGNUP STYLE */
