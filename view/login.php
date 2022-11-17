@@ -27,7 +27,8 @@ include_once('header.php');
                     <img class="w-75" src="../assets/img/ps5_2.png">
                 </div>
                 <div id="secondSectionLogin" class="col-lg-6 col-md-12 p-5 rounded">
-                    <form action="../assets/php/script.php" method="post" id="formValidate" class="text-start text-white"
+                    <form action="../assets/php/script.php" method="post" id="formValidate"
+                          class="text-start text-white"
                           data-parsley-validate="">
                         <h4>LOGIN</h4>
                         <h6 class="mb-4" style="font-weight: 300">Welcome to Origin Gamer</h6>
@@ -35,7 +36,7 @@ include_once('header.php');
                                data-parsley-type="email" data-parsley-trigger="keyup" required="">
                         <div class="input-group mt-3 position-relative">
                             <input id="loginInput2" type="password" class="form-control" name="pass"
-                                   placeholder="Password" data-parsley-pattern="[aA1-zZ9]{8,}"
+                                   placeholder="Password" data-parsley-pattern="[a-zA-Z0-9$#@.%]{8,}"
                                    data-parsley-pattern-message="Your password must contain at least 8 Letters and numbers."
                                    data-parsley-trigger="keyup" required="">
                             <span class="input-group-text" onclick="togglePassword()"><i id="iconPassword"
