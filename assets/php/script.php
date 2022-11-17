@@ -18,10 +18,10 @@ function check_login(): void
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_array($result);
             $_SESSION['user'] = $row['id'];
-            header('location: ../../home.php');
+            header('location: ../../view/home.php');
         } else {
             $_SESSION['message'] = "Incorrect information, please check it !";
-            header('location: ../../login.php');
+            header('location: ../../view/login.php');
         }
     }
 

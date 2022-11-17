@@ -1,10 +1,10 @@
 <?php
 $title = 'Login';
-include_once('pages/head.php');
+include_once('head.php');
 if (isset($_SESSION['user'])) {
     header('location: home.php');
 }
-include_once('pages/header.php');
+include_once('header.php');
 ?>
     <main>
         <?php if (isset($_SESSION['message'])): ?>
@@ -24,10 +24,10 @@ include_once('pages/header.php');
         <div class="container mt-5">
             <div class="row position-relative shadow rounded">
                 <div id="firstSectionLogin" class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
-                    <img class="w-75" src="assets/img/ps5_2.png">
+                    <img class="w-75" src="../assets/img/ps5_2.png">
                 </div>
                 <div id="secondSectionLogin" class="col-lg-6 col-md-12 p-5 rounded">
-                    <form action="assets/php/script.php" method="post" id="formValidate" class="text-start text-white"
+                    <form action="../assets/php/script.php" method="post" id="formValidate" class="text-start text-white"
                           data-parsley-validate="">
                         <h4>LOGIN</h4>
                         <h6 class="mb-4" style="font-weight: 300">Welcome to Origin Gamer</h6>
@@ -55,5 +55,5 @@ include_once('pages/header.php');
         </div>
     </main>
 <?php
-include_once('pages/footer.php');
+include_once('footer.php');
 ?>

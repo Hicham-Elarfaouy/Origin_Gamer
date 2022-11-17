@@ -1,10 +1,10 @@
 <?php
 $title = 'Home';
-include_once('pages/head.php');
-include_once('pages/header.php');
+include_once('head.php');
+include_once('header.php');
 
 if (!isset($_SESSION['user'])) {
-    header('location: index.php');
+    header('location: ../index.php');
 }
 ?>
     <main>
@@ -23,5 +23,5 @@ if (!isset($_SESSION['user'])) {
         </h1>
     </main>
 <?php
-include_once('pages/footer.php');
+include_once('footer.php');
 ?>

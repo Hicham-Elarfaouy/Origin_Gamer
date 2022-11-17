@@ -1,10 +1,10 @@
 <?php
 $title = 'Sign Up';
-include_once('pages/head.php');
+include_once('head.php');
 if (isset($_SESSION['user'])) {
     header('location: home.php');
 }
-include_once('pages/header.php');
+include_once('header.php');
 ?>
     <main>
         <div class="container mt-5">
@@ -31,11 +31,11 @@ include_once('pages/header.php');
                     </form>
                 </div>
                 <div id="firstSectionLogin" class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
-                    <img class="w-75" src="assets/img/ps5_1.png">
+                    <img class="w-75" src="../assets/img/ps5_1.png">
                 </div>
             </div>
         </div>
     </main>
 <?php
-include_once('pages/footer.php');
+include_once('footer.php');
 ?>
