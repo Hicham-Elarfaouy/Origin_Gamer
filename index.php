@@ -1,5 +1,9 @@
 <?php
 $title = 'Origin Gamer';
+include_once('pages/head.php');
+if (isset($_SESSION['user'])) {
+    header('location: home.php');
+}
 include_once('pages/header.php');
 ?>
     <main>

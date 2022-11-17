@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><?php echo $title ?></title>
-    <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Best Gaming Store" name="description">
-    <meta content="Hicham" name="author">
-    <!-- BEGIN CSS -->
-    <link href="assets/css/vendor.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <!-- END CSS -->
-    <!-- BEGIN FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tomorrow:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <!-- END FONTS -->
-
-    <script src="assets/js/jquery-3.6.1.min.js"></script>
-    <script src="assets/js/parsley.min.js"></script>
-</head>
-<body>
+<?php
+?>
 <header class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a id="logo" class="navbar-brand" href="index.php">Origin Gamer</a>
@@ -63,10 +41,28 @@
                     <a class="nav-link" href="">Contact Us</a>
                 </li>
             </ul>
-            <div>
-                <a href="login.php" class="btn btn-outline-secondary btn-sm">LOGIN</a>
-                <a href="signup.php" class="btn btn-secondary btn-sm">SIGN UP</a>
-            </div>
+            <?php
+            if (isset($_SESSION['user'])) {
+                echo '<div class="navbar-item navbar-user dropdown">
+                        <div style="cursor: pointer" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+                            <span>
+                                <span class="me-1">Hicham El Arfaouy</span>
+                                <b class="caret"></b>
+                            </span>
+                        </div>
+                        <div class="dropdown-menu me-1">
+                            <a href="javascript:;" class="dropdown-item">Edit Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="logout.php" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>';
+            } else {
+                echo '<div>
+                        <a href="login.php" class="btn btn-outline-secondary btn-sm">LOGIN</a>
+                        <a href="signup.php" class="btn btn-secondary btn-sm">SIGN UP</a>
+                      </div>';
+            }
+            ?>
         </div>
     </div>
 </header>
