@@ -20,11 +20,13 @@ function check_login(): void
             $row = mysqli_fetch_array($result);
             $_SESSION['user'] = $row['id'];
             header('location: ../../view/home.php');
+            die();
         }
-    } else {
-        $_SESSION['message'] = "Incorrect information, please check it !";
-        header('location: ../../view/login.php');
     }
+
+    $_SESSION['message'] = "Incorrect information, please check it !";
+    header('location: ../../view/login.php');
+    
 
     // Close connection
     mysqli_close($link);
