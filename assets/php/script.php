@@ -3,21 +3,24 @@ session_start();
 
 include('database.php');
 
-if (isset($_POST['login'])) check_login();
+if (isset($_POST['login'])) check_login(validate_input($_POST["email"], 'email'), validate_input($_POST["pass"], 'pass'));
 if (isset($_POST['signup'])) sign_up();
 
-function check_login(): void
+function check_login($email, $pass): void
 {
-    $email = validate_input($_POST["email"], 'email');
-    $pass = validate_input($_POST["pass"], 'pass');
+    if($email=='null' || $pass=='null'){
+        $_SESSION['message'] = "Invalid inputs !";
+        header('location: ../../view/login.php');
+        die();
+    }
 
     $link = connection();
 
-    $sql = "SELECT * FROM users where email = '$email' AND pass = '$pass'";
+    $sql = "SELECT * FROM users where email = '$email'";
 
     if ($result = mysqli_query($link, $sql)) {
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_array($result);
+        $row = mysqli_fetch_array($result);
+        if (mysqli_num_rows($result) > 0 && password_verify($pass, $row['pass'])) {
             $_SESSION['user'] = $row['id'];
             header('location: ../../view/home.php');
             die();
@@ -56,15 +59,12 @@ function sign_up(): void
         }
     }
 
-    $sql = "INSERT INTO users VALUES ('', '$first_name', '$last_name', '$email', '$pass', false)";
+    $hash = password_hash($pass, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO users VALUES ('', '$first_name', '$last_name', '$email', '$hash', false)";
 
     if (mysqli_query($link, $sql)) {
-        $sql = "SELECT * FROM users where email = '$email' AND pass = '$pass'";
-        $result = mysqli_query($link, $sql);
-        $row = mysqli_fetch_array($result);
-        $_SESSION['user'] = $row['id'];
-        header('location: ../../view/home.php');
-
+        check_login($email, $pass);
     } else {
         $_SESSION['message'] = "Incorrect information, please check it !";
         header('location: ../../view/signup.php');
