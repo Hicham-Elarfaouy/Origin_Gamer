@@ -195,7 +195,7 @@ if (isset($_SESSION['user'])) {
 </main>
 <footer class="bg-secondary container-fluid">
     <div class="row p-5">
-        <div class="col-md-3 col-sm-6 text-white">
+        <div class="col-md-3 col-sm-6 text-white pb-5">
             <h5>
                 <a class="nav-link mb-3" href="index.php">Origin Gamer</a>
             </h5>
@@ -212,7 +212,7 @@ if (isset($_SESSION['user'])) {
                 <a class="nav-link" href="index.php">Contact Us</a>
             </p>
         </div>
-        <div class="col-md-3 col-sm-6 text-white">
+        <div class="col-md-3 col-sm-6 text-white pb-5">
             <h5>
                 <a class="nav-link mb-3" href="index.php">Pc Components</a>
             </h5>
@@ -232,7 +232,7 @@ if (isset($_SESSION['user'])) {
                 <a class="nav-link" href="index.php">Peripherals</a>
             </p>
         </div>
-        <div class="col-md-3 col-sm-6 text-white">
+        <div class="col-md-3 col-sm-6 text-white pb-5">
             <h5>
                 <a class="nav-link mb-3" href="index.php">Gaming Pcs</a>
             </h5>
@@ -246,7 +246,7 @@ if (isset($_SESSION['user'])) {
                 <a class="nav-link" href="index.php">PreBuild Pcs</a>
             </p>
         </div>
-        <div class="col-md-3 col-sm-6 text-white">
+        <div class="col-md-3 col-sm-6 text-white pb-5">
             <h5>
                 <a class="nav-link mb-3" href="index.php">Get in touch</a>
             </h5>

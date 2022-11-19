@@ -10,7 +10,7 @@ function check_login($email, $pass): void
 {
     if($email=='null' || $pass=='null'){
         $_SESSION['message'] = "Invalid inputs !";
-        header('location: ../../view/login.php');
+        header('location: ../view/login.php');
         die();
     }
 
@@ -21,14 +21,14 @@ function check_login($email, $pass): void
     if ($result = mysqli_query($link, $sql)) {
         $row = mysqli_fetch_array($result);
         if (mysqli_num_rows($result) > 0 && password_verify($pass, $row['pass'])) {
-            $_SESSION['user'] = $row['id'];
-            header('location: ../../view/home.php');
+            $_SESSION['user'] = [$row['id'], $row['first_name'], $row['last_name'], $row['email'], $row['is_admin']];
+            header('location: ../view/home.php');
             die();
         }
     }
 
     $_SESSION['message'] = "Incorrect information, please check it !";
-    header('location: ../../view/login.php');
+    header('location: ../view/login.php');
     
 
     // Close connection
@@ -44,7 +44,7 @@ function sign_up(): void
 
     if($first_name=='null' || $last_name=='null' || $email=='null' || $pass=='null'){
         $_SESSION['message'] = "Invalid inputs !";
-        header('location: ../../view/signup.php');
+        header('location: ../view/signup.php');
         die();
     }
 
@@ -54,7 +54,7 @@ function sign_up(): void
     if ($result = mysqli_query($link, $sql)) {
         if (mysqli_num_rows($result) > 0) {
             $_SESSION['message'] = "Already exist this email, login !";
-            header('location: ../../view/login.php');
+            header('location: ../view/login.php');
             die();
         }
     }
@@ -67,7 +67,7 @@ function sign_up(): void
         check_login($email, $pass);
     } else {
         $_SESSION['message'] = "Incorrect information, please check it !";
-        header('location: ../../view/signup.php');
+        header('location: ../view/signup.php');
     }
 
     // Close connection

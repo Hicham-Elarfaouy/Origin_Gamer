@@ -27,7 +27,7 @@ include_once('header.php');
                     <img class="w-75" src="../assets/img/ps5_2.png">
                 </div>
                 <div id="secondSectionLogin" class="col-lg-6 col-md-12 p-5 rounded">
-                    <form action="../assets/php/script.php" method="post" id="formValidate"
+                    <form action="../php/script.php" method="post" id="formValidate"
                           class="text-start text-white"
                           data-parsley-validate="">
                         <h4>LOGIN</h4>

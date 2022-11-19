@@ -43,14 +43,15 @@
             </ul>
             <?php
             if (isset($_SESSION['user'])) {
+                $name = $_SESSION['user'][1].' '.$_SESSION['user'][2];
                 echo '<div class="navbar-item navbar-user dropdown">
                         <div style="cursor: pointer" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                             <span>
-                                <span class="me-1">Hicham El Arfaouy</span>
+                                <span class="me-1">'.$name.'</span>
                                 <b class="caret"></b>
                             </span>
                         </div>
-                        <div class="dropdown-menu me-1">
+                        <div class="dropdown-menu me-1 dropdown-menu-lg-end">
                             <a href="javascript:;" class="dropdown-item">Edit Profile</a>
                             <div class="dropdown-divider"></div>
                             <a href="logout.php" class="dropdown-item">Log Out</a>

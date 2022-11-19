@@ -22,7 +22,7 @@ include_once('header.php');
         <div class="container mt-5">
             <div class="row position-relative shadow rounded">
                 <div id="secondSectionLogin" class="col-lg-6 col-md-12 p-5 rounded">
-                    <form action="../assets/php/script.php" method="post" id="formValidate"
+                    <form action="../php/script.php" method="post" id="formValidate"
                           class="text-start text-white" data-parsley-validate="">
                         <h4>SIGN UP</h4>
                         <h6 class="mb-4" style="font-weight: 300">Welcome to Origin Gamer</h6>

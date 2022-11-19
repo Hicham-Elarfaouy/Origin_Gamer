@@ -8,19 +8,9 @@ if (!isset($_SESSION['user'])) {
 }
 ?>
     <main>
-        <?php if (isset($_SESSION['user'])): ?>
-            <div class="alert alert-green alert-dismissible fade show">
-                <strong>Error!</strong>
-                <?php
-                echo $_SESSION['user'];
-                //                unset($_SESSION['user']);
-                ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        <?php endif ?>
-        <h1>
-            Home account
-        </h1>
+        <?php
+            include_once ('components/list_products.php');
+        ?>
     </main>
 <?php
 include_once('footer.php');
