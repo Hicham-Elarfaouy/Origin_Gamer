@@ -83,3 +83,21 @@ function validate_input($input, $type): string
         default => "null",
     };
 }
+
+function getCategories()
+{
+    $link = connection();
+
+    $sql = "SELECT * FROM categories";
+    
+    if($result = mysqli_query($link, $sql)){
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_array($result)){
+                echo "<option value='$row[id]'>$row[name]</option>";
+            }
+        }
+    }
+        
+    // Close connection
+    mysqli_close($link);
+}

@@ -29,55 +29,110 @@
                     <option value="3">Price : High to Low</option>
                 </select>
                 <?php
-                    if(isset($_SESSION['user']) && $_SESSION['user'][4]){
-                        echo '<button class="btn btn-success ms-1">Add Product</button>';
+                    if(isset($_SESSION['user'])){
+                        echo '<button id="addButton" class="btn btn-success ms-1">Add Product</button>';
                     }
                 ?>
             </div>
         </div>
         <div class="row g-3 mt-1 justify-content-center justify-content-md-start">
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
-                <button class="card">
-                    <img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top p-4" alt="..." >
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </button>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
                 <div class="card">
-                    <img src="../assets/img/Origin%20gamer%20pictures/skillchairs-adventure-series-siege.jpg" class="card-img-top p-4" alt="..." >
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
-                <div class="card">
-                    <img src="../assets/img/Origin%20gamer%20pictures/intel-core-i5-12400f-25-ghz-44-ghz-processeurs.jpg" class="card-img-top p-4" alt="..." >
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
+                        <div class="row">
+                            <div class="col align-self-end">
+                                <div class="p-1 mb-1 bg-danger rounded text-white text-center" style="font-size: 12px;">Save 50%</div>
+                                <div class="text-success" style="font-size: 13px;">En stock (34)</div>
+                                <input type="number" value="1" class="form-control" name="product-amount" id="product-amount" min="1"/>
+                            </div>
+                            <div class="col align-self-end">
+                                <div class="fw-semibold">$ 1289.99</div>
+                                <div class="fw-light text-decoration-line-through mb-1" style="font-size: 12px;">$ 1289.99</div>
+                                <button class="btn btn-success w-100">Buy</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
                 <div class="card">
-                    <img src="../assets/img/Origin%20gamer%20pictures/logitech-g933-artemis-spectrum-rgb-wireless-71-surround-gaming-headset-blanc-casques.jpg" class="card-img-top p-4" alt="..." >
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
+                        <div class="row">
+                            <div class="col align-self-end">
+                                <div class="p-1 mb-1 bg-danger rounded text-white text-center" style="font-size: 12px;">Save 50%</div>
+                                <div class="text-success" style="font-size: 13px;">En stock (34)</div>
+                                <input type="number" value="1" class="form-control" name="product-amount" id="product-amount" min="1"/>
+                            </div>
+                            <div class="col align-self-end">
+                                <div class="fw-semibold">$ 1289.99</div>
+                                <div class="fw-light text-decoration-line-through mb-1" style="font-size: 12px;">$ 1289.99</div>
+                                <button class="btn btn-success w-100">Buy</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
                 <div class="card">
-                    <img src="../assets/img/Origin%20gamer%20pictures/samsung-ssd-980-pro-m2-pcie-nvme-1tb-disques-ssd.jpg" class="card-img-top p-4" alt="..." >
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
+                        <div class="row">
+                            <div class="col align-self-end">
+                                <div class="p-1 mb-1 bg-danger rounded text-white text-center" style="font-size: 12px;">Save 50%</div>
+                                <div class="text-success" style="font-size: 13px;">En stock (34)</div>
+                                <input type="number" value="1" class="form-control" name="product-amount" id="product-amount" min="1"/>
+                            </div>
+                            <div class="col align-self-end">
+                                <div class="fw-semibold">$ 1289.99</div>
+                                <div class="fw-light text-decoration-line-through mb-1" style="font-size: 12px;">$ 1289.99</div>
+                                <button class="btn btn-success w-100">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                <div class="card">
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
+                        <div class="row">
+                            <div class="col align-self-end">
+                                <div class="p-1 mb-1 bg-danger rounded text-white text-center" style="font-size: 12px;">Save 50%</div>
+                                <div class="text-success" style="font-size: 13px;">En stock (34)</div>
+                                <input type="number" value="1" class="form-control" name="product-amount" id="product-amount" min="1"/>
+                            </div>
+                            <div class="col align-self-end">
+                                <div class="fw-semibold">$ 1289.99</div>
+                                <div class="fw-light text-decoration-line-through mb-1" style="font-size: 12px;">$ 1289.99</div>
+                                <button class="btn btn-success w-100">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                <div class="card">
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
+                        <div class="row">
+                            <div class="col align-self-end">
+                                <div class="p-1 mb-1 bg-danger rounded text-white text-center" style="font-size: 12px;">Save 50%</div>
+                                <div class="text-success" style="font-size: 13px;">En stock (34)</div>
+                                <input type="number" value="1" class="form-control" name="product-amount" id="product-amount" min="1"/>
+                            </div>
+                            <div class="col align-self-end">
+                                <div class="fw-semibold">$ 1289.99</div>
+                                <div class="fw-light text-decoration-line-through mb-1" style="font-size: 12px;">$ 1289.99</div>
+                                <button class="btn btn-success w-100">Buy</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
