@@ -85,7 +85,7 @@ function validate_input($input, $type): string
     };
 }
 
-function get_categories()
+function get_categories(): void
 {
     $link = connection();
 
@@ -103,21 +103,21 @@ function get_categories()
     mysqli_close($link);
 }
 
-function get_products($admin)
+function get_products($admin): void
 {
-    $admin = $admin == true ? 'onclick=""' : '';
+    $admin = $admin ? 'onclick=""' : '';
     $link = connection();
 
-    $sql = "SELECT * FROM products";
+    $sql = "SELECT * FROM products ORDER BY id DESC";
     
     if($result = mysqli_query($link, $sql)){
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_array($result)){
                 $display = 'd-none'; 
-                $dicount = $row['price'];
+                $discount = $row['price'];
                 if($row['discount'] > 0){
                     $display = ''; 
-                    $dicount = $row['price'] * ($row['discount'] / 100);
+                    $discount = $row['price'] * ($row['discount'] / 100);
                 }
                 echo "<div class='col-xl-3 col-lg-4 col-md-6 col-sm-8'>
                         <div class='card'>
@@ -131,7 +131,7 @@ function get_products($admin)
                                         <input type='number' value='1' class='form-control' name='amount' id='amount' min='1' max='$row[amount]'/>
                                     </div>
                                     <div class='col align-self-end'>
-                                        <div class='fw-semibold'>$ $dicount</div>
+                                        <div class='fw-semibold'>$ $discount</div>
                                         <div class='fw-light text-decoration-line-through mb-1 $display' style='font-size: 12px;'>$ $row[price]</div>
                                         <button class='btn btn-success w-100'>Buy</button>
                                     </div>
@@ -147,7 +147,7 @@ function get_products($admin)
     mysqli_close($link);
 }
 
-function save_product()
+function save_product(): void
 {
     $link = connection();
 
