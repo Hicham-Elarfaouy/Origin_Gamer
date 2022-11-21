@@ -3,9 +3,11 @@ session_start();
 
 include('database.php');
 
-if (isset($_POST['login'])) check_login(validate_input($_POST["email"], 'email'), validate_input($_POST["pass"], 'pass'));
-if (isset($_POST['signup'])) sign_up();
-if (isset($_POST['save'])) save_product();
+if (isset($_POST['login']))         check_login(validate_input($_POST["email"], 'email'), validate_input($_POST["pass"], 'pass'));
+if (isset($_POST['signup']))        sign_up();
+if (isset($_POST['save']))          save_product();
+if (isset($_POST['update']))        update_product();
+if(isset($_POST['openProduct']))    get_specific_product($_POST['openProduct']);
 
 function check_login($email, $pass): void
 {
@@ -105,7 +107,6 @@ function get_categories(): void
 
 function get_products($admin): void
 {
-    $admin = $admin ? 'onclick=""' : '';
     $link = connection();
 
     $sql = "SELECT * FROM products ORDER BY id DESC";
@@ -113,6 +114,7 @@ function get_products($admin): void
     if($result = mysqli_query($link, $sql)){
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_array($result)){
+                $admin = $admin ? "onclick=editProduct($row[id])" : '';
                 $display = 'd-none'; 
                 $discount = $row['price'];
                 if($row['discount'] > 0){
@@ -147,6 +149,33 @@ function get_products($admin): void
     mysqli_close($link);
 }
 
+function get_specific_product($id): void
+{
+    header('Content-Type: application/json');
+    $aResult = [];
+    $link = connection();
+
+    $sql = "SELECT * FROM products where id = $id";
+    if($result = mysqli_query($link, $sql)){
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_array($result)){
+                $aResult[0] = $row['title'];
+                $aResult[1] = $row['amount'];
+                $aResult[2] = $row['categorie'];
+                $aResult[3] = $row['price'];
+                $aResult[4] = $row['discount'];
+                $aResult[5] = $row['description'];
+            }
+            // Free result set
+            mysqli_free_result($result);
+        }
+    }
+
+    // Close connection
+    mysqli_close($link);
+    echo json_encode($aResult);
+}
+
 function save_product(): void
 {
     $link = connection();
@@ -165,5 +194,27 @@ function save_product(): void
     mysqli_close($link);
     
     $_SESSION['message'] = "Product has been added successfully !";
+    header('location: ../view/home.php');
+}
+
+function update_product(): void
+{
+    $link = connection();
+
+    $id = $_POST["product-id"];
+    $title = $_POST["product-title"];
+    $amount = $_POST["product-amount"];
+    $categorie = $_POST["product-categorie"];
+    $price = $_POST["product-price"];
+    $discount = $_POST["product-discount"];
+    $description = $_POST["product-description"];
+
+    $sql = "UPDATE products SET `title`='$title',`amount`='$amount',`categorie`='$categorie',`price`='$price',`discount`='$discount',`description`='$description' WHERE `id`='$id'";
+    mysqli_query($link, $sql);
+
+    // Close connection
+    mysqli_close($link);
+
+    $_SESSION['message'] = "Product has been updated successfully !";
     header('location: ../view/home.php');
 }

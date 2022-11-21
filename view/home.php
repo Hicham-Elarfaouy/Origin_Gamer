@@ -69,7 +69,7 @@ if (!isset($_SESSION['user'])) {
 			<div class="modal-content">
 				<form action="../php/script.php" method="POST" id="form-product" data-parsley-validate>
 					<div class="modal-header">
-						<h5 class="modal-title">Add Product</h5>
+						<h5 class="modal-title">Product</h5>
 						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
 					</div>
 					<div class="modal-body">

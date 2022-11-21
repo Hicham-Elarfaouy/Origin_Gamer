@@ -35,3 +35,28 @@ document.querySelector("#addButton").addEventListener("click", ()=>{
     // document.querySelector("#product-delete-btn").style.display = 'none';
     // document.querySelector("#product-update-btn").style.display = 'none';
 });
+
+function editProduct(id){
+    $.ajax({
+        type: "POST",
+        url: '../php/script.php',
+        data: {openProduct : id},
+        success: function (obj) {
+            document.getElementById('product-title').value       = obj[0];
+            document.getElementById('product-amount').value      = obj[1];
+            document.getElementById('product-categorie').value   = obj[2];
+            document.getElementById('product-price').value       = obj[3];
+            document.getElementById('product-discount').value    = obj[4];
+            document.getElementById('product-description').value = obj[5];
+        }
+    });
+
+    $("#modal").modal('show');
+    console.log(id);
+
+    // document.querySelector("#product-save-btn").style.display = 'none';
+    // document.querySelector("#product-delete-btn").style.display = 'block';
+    // document.querySelector("#product-update-btn").style.display = 'block';
+    //
+    document.querySelector("#product-id").value = id;
+}
