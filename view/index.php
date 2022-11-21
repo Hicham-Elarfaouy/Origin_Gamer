@@ -48,7 +48,37 @@ include_once('header.php');
                     </div>
                 </div>
                 <div class="row g-3 mt-1 justify-content-center justify-content-md-start">
-                    <?php get_products(false); ?>
+                    <?php
+                    $result = get_products();
+                    while($row = mysqli_fetch_array($result)){
+                        $display = 'd-none';
+                        $discount = $row['price'];
+                        if($row['discount'] > 0){
+                            $display = '';
+                            $discount -= $row['price'] * ($row['discount'] / 100);
+                        }
+                        echo "<div class='col-xl-3 col-lg-4 col-md-6 col-sm-8'>
+                                <div class='card'>
+                                    <img src='../assets/img/Origin%20gamer%20pictures/default.jpg' class='card-img-top w-50 mt-3 rounded align-self-center'>
+                                    <div class='card-body'>
+                                        <p class='card-text'>$row[title]</p>
+                                        <div class='row'>
+                                            <div class='col align-self-end'>
+                                                <div class='p-1 mb-1 bg-danger rounded text-white text-center $display' style='font-size: 12px;'>Save $row[discount]%</div>
+                                                <div class='text-success' style='font-size: 13px;'>En stock ($row[amount])</div>
+                                                <input type='number' value='1' class='form-control' name='amount' id='amount' min='1' max='$row[amount]'/>
+                                            </div>
+                                            <div class='col align-self-end'>
+                                                <div class='fw-semibold'>$ $discount</div>
+                                                <div class='fw-light text-decoration-line-through mb-1 $display' style='font-size: 12px;'>$ $row[price]</div>
+                                                <button class='btn btn-success w-100'>Buy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>

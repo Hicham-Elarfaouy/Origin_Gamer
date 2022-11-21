@@ -57,8 +57,64 @@ if (!isset($_SESSION['user'])) {
                         ?>
                     </div>
                 </div>
-                <div class="row g-3 mt-1 justify-content-center justify-content-md-start">
-                    <?php get_products(true); ?>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="table-responsive">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                    <tr class="text-uppercase text-secondary">
+                                        <th>Product</th>
+                                        <th>Categorie</th>
+                                        <th>Amount</th>
+                                        <th>Price</th>
+                                        <th>Discount</th>
+                                        <th>Description</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $result = get_products();
+                                    while($row = mysqli_fetch_array($result)){
+                                        echo "<tr class='align-middle'>
+                                                <td>
+                                                    <div class='d-flex'>
+                                                        <img src='../assets/img/Origin%20gamer%20pictures/default.jpg' class='me-3 rounded' style='width: 40px'>
+                                                        <div class='align-self-center'>
+                                                            <h6 class='mb-0'>$row[title]</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class='mb-0'>$row[categorie]</p>
+                                                </td>
+                                                <td>
+                                                    <p class='mb-0'>$row[amount]</p>
+                                                </td>
+                                                <td>
+                                                    <p class='mb-0'>$row[price]</p>
+                                                </td>
+                                                <td>
+                                                    <p class='mb-0'>$row[discount]</p>
+                                                </td>
+                                                <td>
+                                                    <p class='mb-0'>$row[description]</p>
+                                                </td>
+                                                <td>
+                                                    <div class='d-flex justify-content-around'>
+                                                        <i role='button' onclick='editProduct($row[id])' class='fa-solid fa-pen-to-square text-primary'></i>
+                                                        <i role='button' class='fa-solid fa-trash-can text-danger ms-3'></i>
+                                                    </div>
+                                                </td>
+                                            </tr>";
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,7 +173,6 @@ if (!isset($_SESSION['user'])) {
 					</div>
 					<div class="modal-footer">
 						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-						<button type="submit" name="delete" class="btn btn-danger task-action-btn" id="product-delete-btn">Delete</button>
 						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="product-update-btn">Update</button>
 						<button type="submit" name="save" class="btn btn-primary task-action-btn" id="product-save-btn">Save</button>
 					</div>
