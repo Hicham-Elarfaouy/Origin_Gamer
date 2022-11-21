@@ -80,7 +80,7 @@ if (!isset($_SESSION['user'])) {
                                         echo "<tr class='align-middle'>
                                                 <td>
                                                     <div class='d-flex'>
-                                                        <img src='../assets/img/Origin%20gamer%20pictures/default.jpg' class='me-3 rounded' style='width: 40px'>
+                                                        <img src='../assets/img/Origin%20gamer%20pictures/default.jpg' class='me-3 rounded' style='width: 40px; height: 40px;'>
                                                         <div class='align-self-center'>
                                                             <h6 class='mb-0'>$row[title]</h6>
                                                         </div>
@@ -104,7 +104,7 @@ if (!isset($_SESSION['user'])) {
                                                 <td>
                                                     <div class='d-flex justify-content-around'>
                                                         <i role='button' onclick='editProduct($row[id])' class='fa-solid fa-pen-to-square text-primary'></i>
-                                                        <i role='button' class='fa-solid fa-trash-can text-danger ms-3'></i>
+                                                        <i role='button' onclick='deleteProduct($row[id])' class='fa-solid fa-trash-can text-danger ms-3'></i>
                                                     </div>
                                                 </td>
                                             </tr>";

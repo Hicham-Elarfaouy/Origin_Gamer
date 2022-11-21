@@ -7,6 +7,7 @@ if (isset($_POST['login']))         check_login(validate_input($_POST["email"], 
 if (isset($_POST['signup']))        sign_up();
 if (isset($_POST['save']))          save_product();
 if (isset($_POST['update']))        update_product();
+if(isset($_POST['delete']))         deleteTask($_POST['delete']);
 if(isset($_POST['openProduct']))    get_specific_product($_POST['openProduct']);
 
 function check_login($email, $pass): void
@@ -186,5 +187,19 @@ function update_product(): void
     mysqli_close($link);
 
     $_SESSION['message'] = "Product has been updated successfully !";
+    header('location: ../view/home.php');
+}
+
+function deleteTask($id): void
+{
+    $link = connection();
+
+    $sql = "DELETE FROM products WHERE id = $id";
+    mysqli_query($link, $sql);
+
+    // Close connection
+    mysqli_close($link);
+
+    $_SESSION['message'] = "Task has been deleted successfully !";
     header('location: ../view/home.php');
 }

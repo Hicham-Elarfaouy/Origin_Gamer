@@ -74,6 +74,7 @@
 <script src="../assets/js/vendor.min.js"></script>
 <script src="../assets/js/app.min.js"></script>
 <script src="../assets/js/scripts.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- END JS -->
 </body>
 </html>

@@ -21,7 +21,7 @@ include_once ('../php/script.php');
     <link href="https://fonts.googleapis.com/css2?family=Tomorrow:wght@200;300;400;500&display=swap" rel="stylesheet">
     <!-- END FONTS -->
 
-    <script src="../assets/js/jquery-3.6.1.min.js"></script>
-    <script src="../assets/js/parsley.min.js"></script>
+    <script defer src="../assets/js/jquery-3.6.1.min.js"></script>
+    <script defer src="../assets/js/parsley.min.js"></script>
 </head>
 <body>
