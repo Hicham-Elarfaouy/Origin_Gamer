@@ -5,6 +5,7 @@ include('database.php');
 
 if (isset($_POST['login'])) check_login(validate_input($_POST["email"], 'email'), validate_input($_POST["pass"], 'pass'));
 if (isset($_POST['signup'])) sign_up();
+if (isset($_POST['save'])) save_product();
 
 function check_login($email, $pass): void
 {
@@ -84,7 +85,7 @@ function validate_input($input, $type): string
     };
 }
 
-function getCategories()
+function get_categories()
 {
     $link = connection();
 
@@ -100,4 +101,25 @@ function getCategories()
         
     // Close connection
     mysqli_close($link);
+}
+
+function save_product()
+{
+    $link = connection();
+
+    $title = $_POST["product-title"];
+    $amount = $_POST["product-amount"];
+    $categorie = $_POST["product-categorie"];
+    $price = $_POST["product-price"];
+    $discount = $_POST["product-discount"];
+    $description = $_POST["product-description"];
+
+    $sql = "INSERT INTO products VALUES ('', '$title', '$amount', '$categorie', '$price', '$discount', '$description')";
+    mysqli_query($link, $sql);
+    
+    // Close connection
+    mysqli_close($link);
+    
+    $_SESSION['message'] = "Product has been added successfully !";
+    header('location: ../view/home.php');
 }

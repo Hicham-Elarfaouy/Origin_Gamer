@@ -8,6 +8,18 @@ if (!isset($_SESSION['user'])) {
 }
 ?>
     <main>
+		<?php if (isset($_SESSION['message'])): ?>
+            <div class="d-flex justify-content-center">
+                <div class="alert alert-success alert-dismissible fade show mt-5 w-75">
+                    <strong>Success : </strong>
+                    <?php
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                    ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+        <?php endif ?>
         <?php
             include_once ('components/list_products.php');
         ?>
@@ -39,7 +51,7 @@ if (!isset($_SESSION['user'])) {
 							<div class="mb-3">
 								<label class="form-label">Categorie</label>
 								<select class="form-select" id="product-categorie" name="product-categorie">
-									<?php getCategories(); ?>
+									<?php get_categories(); ?>
 								</select>
 							</div>
                             <div class="row">

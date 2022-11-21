@@ -38,7 +38,7 @@
         <div class="row g-3 mt-1 justify-content-center justify-content-md-start">
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
                 <div class="card">
-                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50 rounded" alt="..." ></button>
                     <div class="card-body">
                         <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
                         <div class="row">
@@ -58,7 +58,7 @@
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
                 <div class="card">
-                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/default.jpg" class="card-img-top w-50 rounded" alt="..." ></button>
                     <div class="card-body">
                         <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
                         <div class="row">
@@ -78,7 +78,7 @@
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
                 <div class="card">
-                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50 rounded" alt="..." ></button>
                     <div class="card-body">
                         <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
                         <div class="row">
@@ -98,7 +98,7 @@
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
                 <div class="card">
-                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50 rounded" alt="..." ></button>
                     <div class="card-body">
                         <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
                         <div class="row">
@@ -118,7 +118,7 @@
             </div>
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
                 <div class="card">
-                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50" alt="..." ></button>
+                    <button class="btn"><img src="../assets/img/Origin%20gamer%20pictures/gigabyte-b450m-s2h-cartes-meres.jpg" class="card-img-top w-50 rounded" alt="..." ></button>
                     <div class="card-body">
                         <p class="card-text">Some quick example text to build on the card title dvjkjdvb djbvkjbjdjvjbjdbkjvj dvbjdbjkvbkjd vdbvj dkbvkbd .</p>
                         <div class="row">
