@@ -3,16 +3,17 @@ session_start();
 
 include('database.php');
 
-if (isset($_POST['login']))         check_login(validate_input($_POST["email"], 'email'), validate_input($_POST["pass"], 'pass'));
-if (isset($_POST['signup']))        sign_up();
-if (isset($_POST['save']))          save_product();
-if (isset($_POST['update']))        update_product();
-if(isset($_POST['delete']))         deleteTask($_POST['delete']);
-if(isset($_POST['openProduct']))    get_specific_product($_POST['openProduct']);
+if (isset($_POST['login'])) check_login(validate_input($_POST["email"], 'email'), validate_input($_POST["pass"], 'pass'));
+if (isset($_POST['signup'])) sign_up();
+if (isset($_POST['save'])) save_product();
+if (isset($_POST['update'])) update_product();
+if (isset($_POST['delete'])) deleteTask($_POST['delete']);
+if (isset($_POST['openProduct'])) get_specific_product($_POST['openProduct']);
+if (isset($_POST['profile'])) update_profile();
 
 function check_login($email, $pass): void
 {
-    if($email=='null' || $pass=='null'){
+    if ($email == 'null' || $pass == 'null') {
         $_SESSION['message'] = "Invalid inputs !";
         header('location: ../view/login.php');
         die();
@@ -33,7 +34,7 @@ function check_login($email, $pass): void
 
     $_SESSION['message'] = "Incorrect information, please check it !";
     header('location: ../view/login.php');
-    
+
 
     // Close connection
     mysqli_close($link);
@@ -46,7 +47,7 @@ function sign_up(): void
     $email = validate_input($_POST["email"], 'email');
     $pass = validate_input($_POST["pass"], 'pass');
 
-    if($first_name=='null' || $last_name=='null' || $email=='null' || $pass=='null'){
+    if ($first_name == 'null' || $last_name == 'null' || $email == 'null' || $pass == 'null') {
         $_SESSION['message'] = "Invalid inputs !";
         header('location: ../view/signup.php');
         die();
@@ -93,15 +94,15 @@ function get_categories(): void
     $link = connection();
 
     $sql = "SELECT * FROM categories";
-    
-    if($result = mysqli_query($link, $sql)){
-        if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_array($result)){
+
+    if ($result = mysqli_query($link, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
                 echo "<option value='$row[id]'>$row[name]</option>";
             }
         }
     }
-        
+
     // Close connection
     mysqli_close($link);
 }
@@ -110,10 +111,14 @@ function get_products()
 {
     $link = connection();
 
-    $sql = "SELECT * FROM products ORDER BY id DESC";
-    
+    $sql = "SELECT p.id, p.title, c.name, p.amount, p.price, p.discount, p.description
+            FROM products AS p
+            INNER JOIN categories AS c
+            ON p.categorie = c.id
+            ORDER BY id DESC";
+
     $result = mysqli_query($link, $sql);
-        
+
     // Close connection
     mysqli_close($link);
 
@@ -127,9 +132,9 @@ function get_specific_product($id): void
     $link = connection();
 
     $sql = "SELECT * FROM products where id = $id";
-    if($result = mysqli_query($link, $sql)){
-        if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_array($result)){
+    if ($result = mysqli_query($link, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
                 $aResult[0] = $row['title'];
                 $aResult[1] = $row['amount'];
                 $aResult[2] = $row['categorie'];
@@ -160,10 +165,10 @@ function save_product(): void
 
     $sql = "INSERT INTO products VALUES ('', '$title', '$amount', '$categorie', '$price', '$discount', '$description')";
     mysqli_query($link, $sql);
-    
+
     // Close connection
     mysqli_close($link);
-    
+
     $_SESSION['message'] = "Product has been added successfully !";
     header('location: ../view/home.php');
 }
@@ -202,4 +207,50 @@ function deleteTask($id): void
 
     $_SESSION['message'] = "Task has been deleted successfully !";
     header('location: ../view/home.php');
+}
+
+function update_profile(): void
+{
+    $id = $_POST["user-id"];
+    $first_name = validate_input($_POST["first_name"], 'text');
+    $last_name = validate_input($_POST["last_name"], 'text');
+    $email = validate_input($_POST["email"], 'email');
+    $old_pass = validate_input($_POST["old_pass"], 'pass');
+    $new_pass = validate_input($_POST["new_pass"], 'pass');
+
+    if ($first_name == 'null' || $last_name == 'null' || $email == 'null' || $old_pass == 'null') {
+        $_SESSION['message'] = "Invalid inputs !";
+        header('location: ../view/profile.php');
+        die();
+    }
+
+    $link = connection();
+
+    $sql = "SELECT * FROM users where id = '$id'";
+
+    if ($result = mysqli_query($link, $sql)) {
+        $row = mysqli_fetch_array($result);
+        if (mysqli_num_rows($result) > 0 && password_verify($old_pass, $row['pass'])) {
+            if($new_pass == 'null'){
+                $sql = "UPDATE users SET `first_name`='$first_name',`last_name`='$last_name',`email`='$email' WHERE `id`='$id'";
+                if (mysqli_query($link, $sql)) {
+                    check_login($email, $old_pass);
+                }
+                die();
+            }else{
+                $hash = password_hash($new_pass, PASSWORD_DEFAULT);
+                $sql = "UPDATE users SET `first_name`='$first_name',`last_name`='$last_name',`email`='$email',`pass`='$hash' WHERE `id`='$id'";
+                if (mysqli_query($link, $sql)) {
+                    check_login($email, $new_pass);
+                }
+                die();
+            }
+        }
+    }
+
+    $_SESSION['message'] = "Incorrect information, please check it !";
+    header('location: ../view/profile.php');
+
+    // Close connection
+    mysqli_close($link);
 }

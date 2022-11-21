@@ -26,14 +26,13 @@ function  checkAcceptSignup(){
 }
 
 document.querySelector("#addButton").addEventListener("click", ()=>{
-    // document.querySelector("#form-product").reset();
+    document.querySelector("#form-product").reset();
 
     // Open Modal
     $("#modal").modal('show');
 
-    // document.querySelector("#product-save-btn").style.display = 'block';
-    // document.querySelector("#product-delete-btn").style.display = 'none';
-    // document.querySelector("#product-update-btn").style.display = 'none';
+    document.querySelector("#product-save-btn").style.display = 'block';
+    document.querySelector("#product-update-btn").style.display = 'none';
 });
 
 function editProduct(id){
@@ -54,9 +53,8 @@ function editProduct(id){
     $("#modal").modal('show');
     console.log(id);
 
-    // document.querySelector("#product-save-btn").style.display = 'none';
-    // document.querySelector("#product-delete-btn").style.display = 'block';
-    // document.querySelector("#product-update-btn").style.display = 'block';
+    document.querySelector("#product-save-btn").style.display = 'none';
+    document.querySelector("#product-update-btn").style.display = 'block';
     //
     document.querySelector("#product-id").value = id;
 }

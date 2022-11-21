@@ -87,7 +87,7 @@ if (!isset($_SESSION['user'])) {
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class='mb-0'>$row[categorie]</p>
+                                                    <p class='mb-0'>$row[name]</p>
                                                 </td>
                                                 <td>
                                                     <p class='mb-0'>$row[amount]</p>

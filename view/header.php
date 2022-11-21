@@ -52,7 +52,7 @@
                             </span>
                         </div>
                         <div class="dropdown-menu me-1 dropdown-menu-lg-end">
-                            <a href="javascript:;" class="dropdown-item">Edit Profile</a>
+                            <a href="profile.php" class="dropdown-item">Edit Profile</a>
                             <div class="dropdown-divider"></div>
                             <a href="logout.php" class="dropdown-item">Log Out</a>
                         </div>
