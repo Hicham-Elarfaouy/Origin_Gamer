@@ -81,3 +81,8 @@ function deleteProduct(id){
         }
     });
 }
+
+function search_product(page){
+    let search = document.querySelector('#search').value;
+    window.location.href = page+".php?search="+search;
+}

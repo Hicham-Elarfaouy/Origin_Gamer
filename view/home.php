@@ -112,8 +112,8 @@ $statistics = get_statistics();
                 <div class="d-flex justify-content-between">
                     <form>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..."/>
-                            <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                            <input type="text" id="search" class="form-control" placeholder="Search..." value="<?= $search = $_GET['search'] ?? ''; ?>"/>
+                            <button type="button" onclick="search_product('home')" class="input-group-text"><i class="fa fa-search"></i></button>
                         </div>
                     </form>
                     <div class="d-flex align-items-center ms-1">
@@ -150,7 +150,8 @@ $statistics = get_statistics();
                                     <?php
                                     $cat = $_GET['cat'] ?? '';
                                     $sort = $_GET['sort'] ?? '';
-                                    $result = get_products($cat, $sort);
+                                    $search = $_GET['search'] ?? '';
+                                    $result = get_products($cat, $sort, $search);
                                     while ($row = mysqli_fetch_array($result)) {
                                         $image = $row['image'] == '' ? 'default.jpg' : $row['image'];
                                         echo "<tr class='align-middle'>
