@@ -26,7 +26,15 @@ function check_login($email, $pass): void
     if ($result = mysqli_query($link, $sql)) {
         $row = mysqli_fetch_array($result);
         if (mysqli_num_rows($result) > 0 && password_verify($pass, $row['pass'])) {
-            $_SESSION['user'] = [$row['id'], $row['first_name'], $row['last_name'], $row['email'], $row['is_admin']];
+            if($_POST["remember"]=='1' || $_POST["remember"]=='on'){
+                $hour = time() + 3600 * 24 * 30;
+                setcookie('user_id', $row['id'], $hour, '/');
+                setcookie('user_first', $row['first_name'], $hour, '/');
+                setcookie('user_last', $row['last_name'], $hour, '/');
+                setcookie('user_email', $row['email'], $hour, '/');
+            }else{
+                $_SESSION['user'] = [$row['id'], $row['first_name'], $row['last_name'], $row['email'], $row['is_admin']];
+            }
             header('location: ../view/home.php');
             die();
         }

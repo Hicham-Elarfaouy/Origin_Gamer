@@ -1,5 +1,8 @@
 <?php
 include_once ('../php/script.php');
+if(isset($_COOKIE['user_id'])){
+    $_SESSION['user'] = [$_COOKIE['user_id'], $_COOKIE['user_first'], $_COOKIE['user_last'], $_COOKIE['user_email']];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

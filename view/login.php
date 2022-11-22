@@ -43,7 +43,10 @@ include_once('header.php');
                                                                                          class="fa fa-eye"></i></span>
                         </div>
                         <div class="d-flex justify-content-between align-items-center my-4">
-                            <a href="#" class="text-white" style="font-weight: 300">Forgot Password ?</a>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="check" name="remember">
+                                <label class="form-check-label" for="check" style="font-weight: 300">Remember Me</label>
+                            </div>
                             <input type="submit" name="login" value="LOGIN" class="btn btn-success w-25"/>
                         </div>
                         <p class="text-center" style="font-weight: 300">
