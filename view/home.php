@@ -94,14 +94,17 @@ $statistics = get_statistics();
             <div class=" d-none d-md-block col-lg-3 col-md-3">
                 <div class="card">
                     <div class="card-header bg-secondary text-white">
-                        All Categories
+                        <a href="home.php" class="link-light">All Categories</a>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <a href="#" class="list-group-item">CPUs</a>
-                        <a href="#" class="list-group-item">MotherBoards</a>
-                        <a href="#" class="list-group-item">Memory</a>
-                        <a href="#" class="list-group-item">Storage</a>
-                        <a href="#" class="list-group-item">Peripherals</a>
+                        <a href="home.php?cat=1" class="list-group-item">CPUs</a>
+                        <a href="home.php?cat=2" class="list-group-item">MotherBoards</a>
+                        <a href="home.php?cat=3" class="list-group-item">Memory</a>
+                        <a href="home.php?cat=4" class="list-group-item">Storage</a>
+                        <a href="home.php?cat=5" class="list-group-item">Peripherals</a>
+                        <a href="home.php?cat=6" class="list-group-item">Gaming Desktops</a>
+                        <a href="home.php?cat=7" class="list-group-item">Gaming Laptops</a>
+                        <a href="home.php?cat=8" class="list-group-item">PreBuild PCs</a>
                     </ul>
                 </div>
             </div>
@@ -115,10 +118,10 @@ $statistics = get_statistics();
                     </form>
                     <div class="d-flex align-items-center ms-1">
                         <p class="m-0 me-3 d-none d-lg-block">Sort By : </p>
-                        <select class="form-select w-auto">
-                            <option value="1" selected>Popular</option>
-                            <option value="2">Price : Low to High</option>
-                            <option value="3">Price : High to Low</option>
+                        <select class="form-select w-auto" onChange="window.location.href=this.value">
+                            <option value="home.php">Select</option>
+                            <option value="home.php?sort=ASC">Price : Low to High</option>
+                            <option value="home.php?sort=DESC">Price : High to Low</option>
                         </select>
                         <?php
                         if (isset($_SESSION['user'])) {
@@ -145,7 +148,9 @@ $statistics = get_statistics();
                                     </thead>
                                     <tbody>
                                     <?php
-                                    $result = get_products();
+                                    $cat = $_GET['cat'] ?? '';
+                                    $sort = $_GET['sort'] ?? '';
+                                    $result = get_products($cat, $sort);
                                     while ($row = mysqli_fetch_array($result)) {
                                         $image = $row['image'] == '' ? 'default.jpg' : $row['image'];
                                         echo "<tr class='align-middle'>

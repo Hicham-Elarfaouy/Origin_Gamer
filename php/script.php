@@ -107,15 +107,25 @@ function get_categories(): void
     mysqli_close($link);
 }
 
-function get_products()
+function get_products($cat='', $sort='')
 {
     $link = connection();
+
+    $filter = '';
+    $order = 'ORDER BY id DESC';
+    if(!$cat == ''){
+        $filter = "AND p.categorie = $cat";
+    }
+    if(!$sort == ''){
+        $order = "ORDER BY price $sort";
+    }
 
     $sql = "SELECT p.id, p.title, c.name, p.amount, p.price, p.discount, p.description, p.image
             FROM products AS p
             INNER JOIN categories AS c
             ON p.categorie = c.id
-            ORDER BY id DESC";
+            $filter
+            $order";
 
     $result = mysqli_query($link, $sql);
 

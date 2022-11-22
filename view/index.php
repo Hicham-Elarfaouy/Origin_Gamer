@@ -14,14 +14,17 @@ include_once('header.php');
             <div class=" d-none d-md-block col-lg-3 col-md-3">
                 <div class="card">
                     <div class="card-header bg-secondary text-white">
-                        All Categories
+                        <a href="index.php" class="link-light">All Categories</a>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <a href="#" class="list-group-item">CPUs</a>
-                        <a href="#" class="list-group-item">MotherBoards</a>
-                        <a href="#" class="list-group-item">Memory</a>
-                        <a href="#" class="list-group-item">Storage</a>
-                        <a href="#" class="list-group-item">Peripherals</a>
+                        <a href="index.php?cat=1" class="list-group-item">CPUs</a>
+                        <a href="index.php?cat=2" class="list-group-item">MotherBoards</a>
+                        <a href="index.php?cat=3" class="list-group-item">Memory</a>
+                        <a href="index.php?cat=4" class="list-group-item">Storage</a>
+                        <a href="index.php?cat=5" class="list-group-item">Peripherals</a>
+                        <a href="index.php?cat=6" class="list-group-item">Gaming Desktops</a>
+                        <a href="index.php?cat=7" class="list-group-item">Gaming Laptops</a>
+                        <a href="index.php?cat=8" class="list-group-item">PreBuild PCs</a>
                     </ul>
                 </div>
             </div>
@@ -34,12 +37,12 @@ include_once('header.php');
                         </div>
                     </form>
                     <div class="d-flex align-items-center ms-1">
-                        <p class="m-0 me-3 d-none d-lg-block">Sort By : </p>
-                        <select class="form-select w-auto">
-                            <option value="1" selected>Popular</option>
-                            <option value="2">Price : Low to High</option>
-                            <option value="3">Price : High to Low</option>
-                        </select>
+<!--                        <p class="m-0 me-3 d-none d-lg-block">Sort By : </p>-->
+<!--                        <select class="form-select w-auto" onChange="window.location.href=this.value">-->
+<!--                            <option value="index.php">Select</option>-->
+<!--                            <option value="index.php?sort=ASC">Price : Low to High</option>-->
+<!--                            <option value="index.php?sort=DESC">Price : High to Low</option>-->
+<!--                        </select>-->
                         <?php
                         if(isset($_SESSION['user'])){
                             echo '<button id="addButton" class="btn btn-success ms-1">Add Product</button>';
@@ -49,7 +52,9 @@ include_once('header.php');
                 </div>
                 <div class="row g-3 mt-1 justify-content-center justify-content-md-start">
                     <?php
-                    $result = get_products();
+                    $cat = $_GET['cat'] ?? '';
+                    $sort = $_GET['sort'] ?? '';
+                    $result = get_products($cat, $sort);
                     while($row = mysqli_fetch_array($result)){
                         $image = $row['image'] == '' ? 'default.jpg' : $row['image'];
                         $display = 'd-none';
