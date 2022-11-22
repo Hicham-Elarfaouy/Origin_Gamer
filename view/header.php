@@ -1,4 +1,8 @@
 <?php
+$page = 'index';
+if (isset($_SESSION['user'])) {
+    $page = 'home';
+}
 ?>
 <header class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
@@ -19,11 +23,11 @@
                         Pc Components
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">CPUs</a></li>
-                        <li><a class="dropdown-item" href="#">MotherBoards</a></li>
-                        <li><a class="dropdown-item" href="#">Memory</a></li>
-                        <li><a class="dropdown-item" href="#">Storage</a></li>
-                        <li><a class="dropdown-item" href="#">Peripherals</a></li>
+                        <li><a class="dropdown-item" href="<?=$page?>.php?cat=1">CPUs</a></li>
+                        <li><a class="dropdown-item" href="<?=$page?>.php?cat=2">MotherBoards</a></li>
+                        <li><a class="dropdown-item" href="<?=$page?>.php?cat=3">Memory</a></li>
+                        <li><a class="dropdown-item" href="<?=$page?>.php?cat=4">Storage</a></li>
+                        <li><a class="dropdown-item" href="<?=$page?>.php?cat=5">Peripherals</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -32,9 +36,9 @@
                         Gaming Pcs
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Gaming Desktops</a></li>
-                        <li><a class="dropdown-item" href="#">Gaming Laptops</a></li>
-                        <li><a class="dropdown-item" href="#">PreBuild Pcs</a></li>
+                        <li><a class="dropdown-item" href="<?=$page?>.php?cat=6">Gaming Desktops</a></li>
+                        <li><a class="dropdown-item" href="<?=$page?>.php?cat=7">Gaming Laptops</a></li>
+                        <li><a class="dropdown-item" href="<?=$page?>.php?cat=8">PreBuild Pcs</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

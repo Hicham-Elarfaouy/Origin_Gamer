@@ -1,3 +1,9 @@
+<?php
+$page = 'index';
+if (isset($_SESSION['user'])) {
+    $page = 'home';
+}
+?>
 <footer class="bg-secondary container-fluid mt-5">
     <div class="row p-5">
         <div class="col-md-3 col-sm-6 text-white pb-5">
@@ -22,19 +28,19 @@
                 <a class="nav-link mb-3" href="../index.php">Pc Components</a>
             </h5>
             <p>
-                <a class="nav-link" href="../index.php">CPUs</a>
+                <a class="nav-link" href="<?=$page?>.php?cat=1">CPUs</a>
             </p>
             <p>
-                <a class="nav-link" href="../index.php">MotherBoards</a>
+                <a class="nav-link" href="<?=$page?>.php?cat=2">MotherBoards</a>
             </p>
             <p>
-                <a class="nav-link" href="../index.php">Memory</a>
+                <a class="nav-link" href="<?=$page?>.php?cat=3">Memory</a>
             </p>
             <p>
-                <a class="nav-link" href="../index.php">Storage</a>
+                <a class="nav-link" href="<?=$page?>.php?cat=4">Storage</a>
             </p>
             <p>
-                <a class="nav-link" href="../index.php">Peripherals</a>
+                <a class="nav-link" href="<?=$page?>.php?cat=5">Peripherals</a>
             </p>
         </div>
         <div class="col-md-3 col-sm-6 text-white pb-5">
@@ -42,13 +48,13 @@
                 <a class="nav-link mb-3" href="../index.php">Gaming Pcs</a>
             </h5>
             <p>
-                <a class="nav-link" href="../index.php">Gaming Desktops</a>
+                <a class="nav-link" href="<?=$page?>.php?cat=6">Gaming Desktops</a>
             </p>
             <p>
-                <a class="nav-link" href="../index.php">Gaming Laptops</a>
+                <a class="nav-link" href="<?=$page?>.php?cat=7">Gaming Laptops</a>
             </p>
             <p>
-                <a class="nav-link" href="../index.php">PreBuild Pcs</a>
+                <a class="nav-link" href="<?=$page?>.php?cat=8">PreBuild Pcs</a>
             </p>
         </div>
         <div class="col-md-3 col-sm-6 text-white pb-5">
@@ -56,10 +62,10 @@
                 <a class="nav-link mb-3" href="../index.php">Get in touch</a>
             </h5>
             <p>
-                <a class="nav-link" href="../index.php"><img class="me-2" src="../assets/img/linkedin.png" style="width: 30px">Linkedin</a>
+                <a class="nav-link" target="blank" href="https://linkedin.com/in/Hicham-Elarfaouy/"><img class="me-2" src="../assets/img/linkedin.png" style="width: 30px">Linkedin</a>
             </p>
             <p>
-                <a class="nav-link" href="../index.php"><img class="me-2" src="../assets/img/github.png" style="width: 30px">Github</a>
+                <a class="nav-link" target="blank" href="https://github.com/Hicham-Elarfaouy"><img class="me-2" src="../assets/img/github.png" style="width: 30px">Github</a>
             </p>
             <p>
                 <a class="nav-link" href="../index.php"><img class="me-2" src="../assets/img/twitter.png" style="width: 30px">Twitter</a>
