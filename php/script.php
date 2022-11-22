@@ -7,7 +7,7 @@ if (isset($_POST['login'])) check_login(validate_input($_POST["email"], 'email')
 if (isset($_POST['signup'])) sign_up();
 if (isset($_POST['save'])) save_product();
 if (isset($_POST['update'])) update_product();
-if (isset($_POST['delete'])) deleteTask($_POST['delete']);
+if (isset($_POST['delete'])) delete_product($_POST['delete']);
 if (isset($_POST['openProduct'])) get_specific_product($_POST['openProduct']);
 if (isset($_POST['profile'])) update_profile();
 
@@ -185,8 +185,13 @@ function update_product(): void
     $price = $_POST["product-price"];
     $discount = $_POST["product-discount"];
     $description = $_POST["product-description"];
-
-    $sql = "UPDATE products SET `title`='$title',`amount`='$amount',`categorie`='$categorie',`price`='$price',`discount`='$discount',`description`='$description' WHERE `id`='$id'";
+    $image = upload_image($_FILES["product-image"]);
+    if($image == ''){
+        $sql = "UPDATE products SET `title`='$title',`amount`='$amount',`categorie`='$categorie',`price`='$price',`discount`='$discount',`description`='$description' WHERE `id`='$id'";
+    }else{
+        delete_image($id, $link);
+        $sql = "UPDATE products SET `title`='$title',`amount`='$amount',`categorie`='$categorie',`price`='$price',`discount`='$discount',`description`='$description',`image`='$image' WHERE `id`='$id'";
+    }
     mysqli_query($link, $sql);
 
     // Close connection
@@ -196,9 +201,11 @@ function update_product(): void
     header('location: ../view/home.php');
 }
 
-function deleteTask($id): void
+function delete_product($id): void
 {
     $link = connection();
+
+    delete_image($id, $link);
 
     $sql = "DELETE FROM products WHERE id = $id";
     mysqli_query($link, $sql);
@@ -334,4 +341,14 @@ function upload_image($image): string
     }
 
     return '';
+}
+
+function delete_image($id, $link): void
+{
+    $sql = "SELECT image FROM products WHERE id = $id";
+    $result = mysqli_query($link, $sql);
+    $row = mysqli_fetch_array($result);
+
+    $target_dir = "../uploads/";
+    unlink($target_dir.$row['image']);
 }
