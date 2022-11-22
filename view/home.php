@@ -6,9 +6,67 @@ include_once('header.php');
 if (!isset($_SESSION['user'])) {
     header('location: ../index.php');
 }
+
+$statistics = get_statistics();
 ?>
     <main>
-		<?php if (isset($_SESSION['message'])): ?>
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 mb-5">
+                    <div class="card shadow">
+                        <div class="p-3 pt-2">
+                            <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -20px;">
+                                <i class="fa-solid fa-users text-white fa-lg"></i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="mb-0 fw-light">Number of Users</p>
+                                <h4 class="mb-0"><?= $statistics[0] ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-5">
+                    <div class="card shadow">
+                        <div class="p-3 pt-2">
+                            <div class="bg-gradient bg-success p-3 rounded-3 shadow position-absolute" style="top: -20px;">
+                                <i class="fa-solid fa-gamepad text-white fa-lg"></i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="mb-0 fw-light">Number of Products</p>
+                                <h4 class="mb-0"><?= $statistics[1] ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-5">
+                    <div class="card shadow">
+                        <div class="p-3 pt-2">
+                            <div class="bg-gradient bg-success p-3 rounded-3 shadow position-absolute" style="top: -20px;">
+                                <i class="fa-solid fa-money-check-dollar text-white fa-lg"></i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="mb-0 fw-light">Total Prices</p>
+                                <h4 class="mb-0">$<?= $statistics[2] ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-5">
+                    <div class="card shadow">
+                        <div class="p-3 pt-2">
+                            <div class="bg-gradient bg-secondary p-3 rounded-3 shadow position-absolute" style="top: -20px;">
+                                <i class="fa-solid fa-bars text-white fa-lg"></i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="mb-0 fw-light">Categorie</p>
+                                <h4 class="mb-0"><?= $statistics[3] ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php if (isset($_SESSION['message'])): ?>
             <div class="d-flex justify-content-center">
                 <div class="alert alert-success alert-dismissible fade show mt-5 w-75">
                     <strong>Success : </strong>
@@ -39,7 +97,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="d-flex justify-content-between">
                     <form>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." />
+                            <input type="text" class="form-control" placeholder="Search..."/>
                             <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
                         </div>
                     </form>
@@ -51,7 +109,7 @@ if (!isset($_SESSION['user'])) {
                             <option value="3">Price : High to Low</option>
                         </select>
                         <?php
-                        if(isset($_SESSION['user'])){
+                        if (isset($_SESSION['user'])) {
                             echo '<button id="addButton" class="btn btn-success ms-1">Add Product</button>';
                         }
                         ?>
@@ -76,7 +134,7 @@ if (!isset($_SESSION['user'])) {
                                     <tbody>
                                     <?php
                                     $result = get_products();
-                                    while($row = mysqli_fetch_array($result)){
+                                    while ($row = mysqli_fetch_array($result)) {
                                         echo "<tr class='align-middle'>
                                                 <td>
                                                     <div class='d-flex'>
@@ -93,7 +151,7 @@ if (!isset($_SESSION['user'])) {
                                                     <p class='mb-0'>$row[amount]</p>
                                                 </td>
                                                 <td>
-                                                    <p class='mb-0'>$row[price]</p>
+                                                    <p class='mb-0'>$$row[price]</p>
                                                 </td>
                                                 <td>
                                                     <p class='mb-0'>$row[discount]</p>
@@ -121,65 +179,75 @@ if (!isset($_SESSION['user'])) {
     </main>
 
     <div class="modal fade" id="modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form action="../php/script.php" method="POST" id="form-product" data-parsley-validate>
-					<div class="modal-header">
-						<h5 class="modal-title">Product</h5>
-						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
-					</div>
-					<div class="modal-body">
-							<input type="hidden" name="product-id" id="product-id">
-                            <div class="mb-3">
-                                <input type="file" class="form-control" name="product-image" id="product-image">
-                            </div>
-							<div class="mb-3">
-								<label class="form-label">Title</label>
-								<input type="text" class="form-control" name="product-title" id="product-title" data-parsley-pattern="[a-zA-Z0-9\s]+"
-                               data-parsley-pattern-message="Title must contain Letters & numbers only."
-                               data-parsley-trigger="keyup" required/>
-							</div>
-                            <div class="mb-3">
-                                        <label class="form-label">Amount</label>
-                                        <input type="number" class="form-control" name="product-amount" id="product-amount" data-parsley-trigger="keyup" min="1" required/>
-                                    </div>
-							<div class="mb-3">
-								<label class="form-label">Categorie</label>
-								<select class="form-select" id="product-categorie" name="product-categorie">
-									<?php get_categories(); ?>
-								</select>
-							</div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label class="form-label">Price</label>
-                                        <input type="number" class="form-control" name="product-price" id="product-price" data-parsley-trigger="keyup" min="1" required/>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label class="form-label">Discount</label>
-                                        <input type="number" class="form-control" name="product-discount" id="product-discount" data-parsley-trigger="keyup" min="0" max="100" required/>
-                                    </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="../php/script.php" method="POST" id="form-product" data-parsley-validate>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Product</h5>
+                        <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="product-id" id="product-id">
+                        <div class="mb-3">
+                            <input type="file" class="form-control" name="product-image" id="product-image">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" name="product-title" id="product-title"
+                                   data-parsley-pattern="[a-zA-Z0-9\s]+"
+                                   data-parsley-pattern-message="Title must contain Letters & numbers only."
+                                   data-parsley-trigger="keyup" required/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Amount</label>
+                            <input type="number" class="form-control" name="product-amount" id="product-amount"
+                                   data-parsley-trigger="keyup" min="1" required/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Categorie</label>
+                            <select class="form-select" id="product-categorie" name="product-categorie">
+                                <?php get_categories(); ?>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Price</label>
+                                    <input type="number" class="form-control" name="product-price" id="product-price"
+                                           data-parsley-trigger="keyup" min="1" required/>
                                 </div>
                             </div>
-							<div class="mb-0">
-								<label class="form-label">Description</label>
-								<textarea class="form-control" rows="5" id="product-description" name="product-description" data-parsley-pattern="[a-zA-Z0-9\s]+"
-                               data-parsley-pattern-message="Description must contain Letters & numbers only."
-                               data-parsley-trigger="keyup" required></textarea>
-							</div>
-						
-					</div>
-					<div class="modal-footer">
-						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="product-update-btn">Update</button>
-						<button type="submit" name="save" class="btn btn-primary task-action-btn" id="product-save-btn">Save</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label">Discount</label>
+                                    <input type="number" class="form-control" name="product-discount"
+                                           id="product-discount" data-parsley-trigger="keyup" min="0" max="100"
+                                           required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" rows="5" id="product-description" name="product-description"
+                                      data-parsley-pattern="[a-zA-Z0-9\s]+"
+                                      data-parsley-pattern-message="Description must contain Letters & numbers only."
+                                      data-parsley-trigger="keyup" required></textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
+                        <button type="submit" name="update" class="btn btn-warning task-action-btn"
+                                id="product-update-btn">Update
+                        </button>
+                        <button type="submit" name="save" class="btn btn-primary task-action-btn" id="product-save-btn">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <?php
 include_once('footer.php');
 ?>

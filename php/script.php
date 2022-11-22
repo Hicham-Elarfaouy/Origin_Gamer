@@ -254,3 +254,40 @@ function update_profile(): void
     // Close connection
     mysqli_close($link);
 }
+
+function get_statistics(): array
+{
+    $arr = [];
+
+    $link = connection();
+
+    $sql = "SELECT * FROM users";
+    $result = mysqli_query($link, $sql);
+    $arr[0] = mysqli_num_rows($result);
+
+    $sql = "SELECT * FROM products";
+    $result = mysqli_query($link, $sql);
+    $arr[1] = mysqli_num_rows($result);
+
+    $sql = "SELECT SUM(price) as total FROM products";
+    $result = mysqli_query($link, $sql);
+    $row = mysqli_fetch_array($result);
+    $arr[2] = $row['total'];
+
+    $sql = "SELECT COUNT(*) as count, c.name 
+            FROM products as p
+            INNER JOIN categories as c
+            ON p.categorie = c.id
+            GROUP BY categorie
+            ORDER BY count DESC
+            LIMIT 1;";
+    $result = mysqli_query($link, $sql);
+    $row = mysqli_fetch_array($result);
+    $arr[3] = $row['name'];
+
+
+    // Close connection
+    mysqli_close($link);
+
+    return $arr;
+}
