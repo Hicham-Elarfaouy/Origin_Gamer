@@ -51,6 +51,7 @@ include_once('header.php');
                     <?php
                     $result = get_products();
                     while($row = mysqli_fetch_array($result)){
+                        $image = $row['image'] == '' ? 'default.jpg' : $row['image'];
                         $display = 'd-none';
                         $discount = $row['price'];
                         if($row['discount'] > 0){
@@ -59,7 +60,7 @@ include_once('header.php');
                         }
                         echo "<div class='col-xl-3 col-lg-4 col-md-6 col-sm-8'>
                                 <div class='card'>
-                                    <img src='../assets/img/Origin%20gamer%20pictures/default.jpg' class='card-img-top w-50 mt-3 rounded align-self-center'>
+                                    <img src='../uploads/$image' class='card-img-top w-50 mt-3 rounded align-self-center'>
                                     <div class='card-body'>
                                         <p class='card-text'>$row[title]</p>
                                         <div class='row'>

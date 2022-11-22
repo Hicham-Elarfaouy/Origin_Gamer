@@ -111,7 +111,7 @@ function get_products()
 {
     $link = connection();
 
-    $sql = "SELECT p.id, p.title, c.name, p.amount, p.price, p.discount, p.description
+    $sql = "SELECT p.id, p.title, c.name, p.amount, p.price, p.discount, p.description, p.image
             FROM products AS p
             INNER JOIN categories AS c
             ON p.categorie = c.id
@@ -162,8 +162,9 @@ function save_product(): void
     $price = $_POST["product-price"];
     $discount = $_POST["product-discount"];
     $description = $_POST["product-description"];
+    $image = upload_image($_FILES["product-image"]);
 
-    $sql = "INSERT INTO products VALUES ('', '$title', '$amount', '$categorie', '$price', '$discount', '$description')";
+    $sql = "INSERT INTO products VALUES ('', '$title', '$amount', '$categorie', '$price', '$discount', '$description', '$image')";
     mysqli_query($link, $sql);
 
     // Close connection
@@ -290,4 +291,47 @@ function get_statistics(): array
     mysqli_close($link);
 
     return $arr;
+}
+
+function upload_image($image): string
+{
+    if (!$image["size"] > 0) {
+        return '';
+    }
+
+    $target_dir = "../uploads/";
+    $target_file = $target_dir . basename($image["name"]);
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+        $_SESSION['image'] = "Sorry, only JPG, JPEG, PNG files are allowed !";
+        header('location: ../view/home.php');
+        die();
+    }
+
+    if ($image["size"] > 1048576) {
+        $_SESSION['image'] = "Sorry, your image is large than 1mb !";
+        header('location: ../view/home.php');
+        die();
+    }
+
+    // change file name
+    $random = rand(0, 100000);
+    $rename = "Image".date('ymd')."$random.$imageFileType";
+
+    if (file_exists($target_dir.$rename)) {
+        $_SESSION['image'] = "Sorry, file already exists !";
+        header('location: ../view/home.php');
+        die();
+    }
+
+    if (move_uploaded_file($image["tmp_name"], $target_dir.$rename)) {
+        return $rename;
+    } else {
+        $_SESSION['image'] = "Sorry, there was an error uploading your image.";
+        header('location: ../view/home.php');
+        die();
+    }
+
+    return '';
 }

@@ -78,6 +78,18 @@ $statistics = get_statistics();
                 </div>
             </div>
         <?php endif ?>
+        <?php if (isset($_SESSION['image'])): ?>
+            <div class="d-flex justify-content-center">
+                <div class="alert alert-danger alert-dismissible fade show mt-5 w-75">
+                    <strong>Error : </strong>
+                    <?php
+                    echo $_SESSION['image'];
+                    unset($_SESSION['image']);
+                    ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+        <?php endif ?>
         <div class="row mx-2 my-5">
             <div class=" d-none d-md-block col-lg-3 col-md-3">
                 <div class="card">
@@ -135,10 +147,11 @@ $statistics = get_statistics();
                                     <?php
                                     $result = get_products();
                                     while ($row = mysqli_fetch_array($result)) {
+                                        $image = $row['image'] == '' ? 'default.jpg' : $row['image'];
                                         echo "<tr class='align-middle'>
                                                 <td>
                                                     <div class='d-flex'>
-                                                        <img src='../assets/img/Origin%20gamer%20pictures/default.jpg' class='me-3 rounded' style='width: 40px; height: 40px;'>
+                                                        <img src='../uploads/$image' class='me-3 rounded' style='width: 40px; height: 40px;'>
                                                         <div class='align-self-center'>
                                                             <h6 class='mb-0'>$row[title]</h6>
                                                         </div>
@@ -181,7 +194,7 @@ $statistics = get_statistics();
     <div class="modal fade" id="modal">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="../php/script.php" method="POST" id="form-product" data-parsley-validate>
+                <form action="../php/script.php" method="POST" id="form-product" enctype="multipart/form-data" data-parsley-validate>
                     <div class="modal-header">
                         <h5 class="modal-title">Product</h5>
                         <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
@@ -189,7 +202,7 @@ $statistics = get_statistics();
                     <div class="modal-body">
                         <input type="hidden" name="product-id" id="product-id">
                         <div class="mb-3">
-                            <input type="file" class="form-control" name="product-image" id="product-image">
+                            <input type="file" class="form-control" name="product-image" id="product-image" accept="image/png, image/jpeg">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Title</label>
